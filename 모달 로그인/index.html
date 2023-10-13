@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="kr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TMEROOM</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+       
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+.wrapper {
+    position: fixed;
+    z-index: 999;
+    width: 400px;
+    height: 440px;
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, .5);
+    border-radius: 20px;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 30px rgba(0, 0, 0, .5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    transform: scale(0);
+    transition: transform .5s ease, height .2s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: url('background.png') no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 99;
+}
+
+.logo {
+    font-size: 2em;
+    color: #fff;
+    user-select: none;
+    background: url('logo.png') no-repeat;
+}
+
+.navigation a {
+    position: relative;
+    font-size: 1.1em;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    margin-left: 40px;
+}
+
+.navigation a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 100%;
+    height: 3px;
+    background: #fff;
+    border-radius: 5px;
+    transform-origin: right;
+    transform: scaleX(0);
+    transition: transform .5s;
+}
+
+.navigation a:hover::after {
+    transform-origin: left;
+    transform: scaleX(1);
+}
+
+.navigation .btnLogin-popup {
+    width: 130px;
+    height: 50px;
+    background: transparent;
+    border: 2px solid #fff;
+    outline: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1.1em;
+    color: #fff;
+    font-weight: 500;
+    margin-left: 40px;
+    transition: .5s;
+}
+
+.navigation .btnLogin-popup:hover {
+    background: #fff;
+    color: #162938;
+}
+
+.wrapper {
+    position: relative;
+    width: 400px;
+    height: 440px;
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, .5);
+    border-radius: 20px;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 30px rgba(0, 0, 0, .5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    transform: scale(0);
+    transition: transform .5s ease, height .2s ease;
+}
+
+.wrapper.active-popup {
+    transform: scale(1);
+}
+
+.wrapper.active {
+    height: 520px;
+}
+
+.wrapper .form-box {
+    position: absolute;
+    left: 100%;
+    width: 100%;
+    padding: 40px;
+}
+
+.wrapper .icon-close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 45px;
+    height: 45px;
+    background: #162938;
+    font-size: 2em;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom-left-radius: 20px;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.form-box h2 {
+    font-size: 2em;
+    color: #162938;
+    text-align: center;
+}
+
+.input-box {
+    position: relative;
+    width: 100%;
+    height: 50px;
+    border-bottom: 2px solid #162938;
+    margin: 30px 0;
+}
+
+.input-box label {
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    transform: translateY(-50%);
+    font-size: 1em;
+    color: #162938;
+    font-weight: 500;
+    pointer-events: none;
+    transition: .5s;
+}
+
+.input-box input:focus~label,
+.input-box input:valid~label {
+    top: -5px;
+}
+
+.input-box input {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 1em;
+    color: #162938;
+    font-weight: 600;
+    padding: 0 35px 0 5px;
+}
+
+.input-box .icon {
+    position: absolute;
+    right: 8px;
+    font-size: 1.2em;
+    color: #162938;
+    line-height: 57px;
+}
+
+.remember-forgot {
+    font-size: .9em;
+    color: #162938;
+    font-weight: 500;
+    margin: 0 0 15px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.remember-forgot label input {
+    accent-color: #162938;
+    margin-right: 3px;
+    text-align: center;
+}
+
+.remember-forgot a,
+.login-idforgot a {
+    color: #162938;
+    text-decoration: none;
+}
+
+.remember-forgot a:hover,
+.login-idforgot a:hover {
+    text-decoration: underline;
+}
+
+.btn {
+    width: 100%;
+    height: 45px;
+    background: #162938;
+    border: none;
+    outline: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1em;
+    color: #fff;
+    font-weight: 500;
+}
+
+.login-register {
+    font-size: .9em;
+    color: #162938;
+    text-align: center;
+    font-weight: 500;
+    margin: 25px 0 10px;
+}
+
+.login-register p a {
+    color: #162938;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.login-register p a:hover {
+    text-decoration: underline;
+}
+
+.login-idforgot{
+    font-size: .9em;
+    color: #162938;
+    text-align: center;
+    font-weight: 500;
+    margin: 25px 0 10px;
+}
+    </style>
+</head>
+<body>
+
+    <header>
+        <h2 class="logo">TMEROOM</h2>
+        <nav class="navigation">
+            <a href="#">Home</a>
+            <a href="#">About</a>
+            <a href="#">Services</a>
+            <a href="#">Contact</a>
+            <button class="btnLogin-popup">로그인</button>
+        </nav>
+    </header>
+
+    <div class="wrapper active-popup">
+        <span class="icon-close">
+            <ion-icon name="close"></ion-icon>
+        </span>
+
+        <div class="form-box login active">
+            <h2>로그인</h2>
+            <form action="#">
+                <div class="input-box">
+                    <span class="icon">
+                        <ion-icon name="mail"></ion-icon>
+                    </span>
+                    <input type="text" required>
+                    <label>아이디</label>
+                </div>
+                <div class="input-box">
+                    <span class="icon">
+                        <ion-icon name="lock-closed"></ion-icon>
+                    </span>
+                    <input type="password" required>
+                    <label>비밀번호</label>
+                </div>
+                <button type="submit" class="btn">로그인</button>
+                <label><input type="checkbox"> 로그인 유지</label>
+                <div class="login-register">
+                    <p>계정이 없으신가요? <a href="#" class="register-link">생성하기</a></p>
+                </div>
+                <div class="login-idforgot">
+                    <p>아이디를 잊어버리셨나요? <a href="#" class="register-link">아이디찾기</a></p>
+                </div>
+                <div class="remember-forgot">
+                    <p>비밀번호를 잊어버리셨나요? <a href="#" class="register-link">비밀번호찾기</a></p>
+                </div>
+            </form>
+        </div>
+
+        <div class="form-box register">
+            <h2>계정 생성</h2>
+            <form action="#">
+                <div class="input-box">
+                    <span class="icon">
+                        <ion-icon name="person"></ion-icon>
+                    </span>
+                    <input type="text" required>
+                    <label>계정명</label>
+                </div>
+                <div class="input-box">
+                    <span class="icon">
+                        <ion-icon name="mail"></ion-icon>
+                    </span>
+                    <input type="email" required>
+                    <label>이메일</label>
+                </div>
+                <div class="input-box">
+                    <span class="icon">
+                        <ion-icon name="lock-closed"></ion-icon>
+                    </span>
+                    <input type="password" required>
+                    <label>비밀번호</label>
+                </div>
+                <div class="remember-forgot">
+                    <label><input type="checkbox"> I agree to the terms & conditions</label>
+                </div>
+                <button type="submit" class="btn">생성하기</button>
+                <div class="login-register">
+                    <p>이미계정이있으신가요? <a href="#" class="login-link">Login</a></p>
+                </div>
+            </form>
+        </div>
+
+        <div class="form-box find-pw">
+            <h2>비밀번호 찾기</h2>
+            <form action="#">
+                <div class="input-box">
+                    <span class="icon">
+                        <ion-icon name="person"></ion-icon>
+                    </span>
+                    <input type="text" required>
+                    <label>계정명</label>
+                </div>
+                <div class="input-box">
+                    <span class="icon">
+                        <ion-icon name="mail"></ion-icon>
+                    </span>
+                    <input type="email" required>
+                    <label>이메일</label>
+                </div>
+                <button type="submit" class="btn">찾기</button>
+                <div class="login-register">
+                    <div class="login-register">
+                        <p>이미계정이있으신가요? <a href="#" class="login-link">Login</a></p>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div class="form-box find-id">
+            <h2>ID 찾기</h2>
+            <form action="#">
+                <div class="input-box">
+                    <span class="icon">
+                        <ion-icon name="mail"></ion-icon>
+                    </span>
+                    <input type="email" required>
+                    <label>이메일</label>
+                </div>
+                <button type="submit" class="btn">찾기</button>
+                <div class="login-register">
+                    <p>이미계정이있으신가요? <a href="#" class="login-link">Login</a></p>
+                </div>
+                <div class="login-register">
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js" integrity="sha512-cOH8ndwGgPo+K7pTvMrqYbmI8u8k6Sho3js0gOqVWTmQMlLIi6TbqGWRTpf1ga8ci9H3iPsvDLr4X7xwhC/+DQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+    const wrapper = document.querySelector('.wrapper');
+    const formBoxs = document.querySelectorAll('.form-box');
+    const loginLink = document.querySelector('.login-link');
+    const registerLink = document.querySelector('.register-link');
+    const btnPopup = document.querySelector('.btnLogin-popup');
+    const iconClose = document.querySelector('.icon-close');
+    const forgotPwLink = document.querySelector('.remember-forgot a');
+    const forgotIdLink = document.querySelector('.login-idforgot a');
+
+    init();
+    function init(){
+        const initEl = '.form-box.login';
+        gsap.set('.form-box',{'xPercent':0});
+        gsap.set(initEl,{'xPercent':-100});
+        formBoxs.forEach(t=>{t.classList.remove('on')});
+        document.querySelector(initEl).classList.add('on');
+        popupHgt(initEl);
+    }
+    iconClose.addEventListener('click', () => {
+        init(); // init 함수 호출
+        wrapper.classList.remove('active-popup');
+        wrapper.classList.remove('active');
+    });
+
+    function popupTo(el){
+        gsap.fromTo(el,{'xPercent':0},{'xPercent':-100});
+        formBoxs.forEach(t=>{t.classList.remove('on')});
+        document.querySelector(el).classList.add('on');
+        popupHgt(el);
+    }
+   
+    function popupFrom(el){
+        gsap.fromTo(el,{'xPercent':-100},{'xPercent':-200});
+    }
+
+    function popupHgt(el = '.form-box.on'){
+        const hgt = document.querySelector(el).clientHeight;
+        gsap.to(wrapper,{'height':hgt,duration: 0.2});
+    }
+
+    window.addEventListener('resize',()=>{
+        popupHgt();
+    });
+
+    registerLink.addEventListener('click', ()=> {
+        popupFrom('.form-box.login');
+        popupTo('.form-box.register');
+    });
+   
+    loginLink.addEventListener('click', ()=> {
+        popupFrom('.form-box.register');
+        popupTo('.form-box.login');
+    });
+
+    forgotIdLink.addEventListener('click', ()=> {
+        popupFrom('.form-box.login');
+        popupTo('.form-box.find-id');
+    });
+
+    forgotPwLink.addEventListener('click', ()=> {
+        popupFrom('.form-box.login');
+        popupTo('.form-box.find-pw');
+    });
+   
+    btnPopup.addEventListener('click', ()=> {
+        wrapper.classList.add('active-popup');
+    });
+   
+    iconClose.addEventListener('click', ()=> {
+        wrapper.classList.remove('active-popup');
+        wrapper.classList.remove('active');
+    });
+
+    const loginIdLink = document.querySelector('.find-id .login-register .login-link'); // 아이디찾기 영역에 있는 로그인버튼
+    const loginPwLink = document.querySelector('.find-pw .login-register .login-link'); // 비번찾기 영역에 있는 로그인버튼
+
+    // 아이디찾기 영역에 있는 로그인버튼 클릭시
+    loginIdLink.addEventListener('click', ()=> {
+        popupFrom('.form-box.find-id'); // 아이디찾기 영역 숨기기
+        popupTo('.form-box.login'); // 로그인영역 보이게
+    });
+
+    // 비번찾기 영역에 있는 로그인버튼 클릭시
+    loginPwLink.addEventListener('click', ()=> {
+        popupFrom('.form-box.find-pw'); // 비번찾기 영역 숨기기
+        popupTo('.form-box.login'); // 로그인영역 보이게
+    });
+
+    function popupTo(el,du=0.5){
+    gsap.fromTo(el,{'xPercent':0},{'xPercent':-100,duration:du});
+    formBoxs.forEach(t=>{t.classList.remove('on')});
+    document.querySelector(el).classList.add('on');
+    popupHgt(el);
+}
+
+function popupFrom(el,du=0.5){
+    gsap.fromTo(el,{'xPercent':-100},{'xPercent':-200,duration:du});
+}
+
+const idFindBtn = document.querySelector('.id-find-btn');
+idFindBtn.addEventListener('click',(e)=>{
+    e.preventDefault();
+    wrapper.classList.add('active-popup');
+    popupFrom('.form-box.login',0);
+    popupTo('.form-box.find-id',0);
+})
+</script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+
+</html>

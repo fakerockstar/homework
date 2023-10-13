@@ -1,0 +1,134 @@
+<!--<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:400&display=swap">-->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TMEROOM</title>
+    <link href="style.css" rel="stylesheet">
+</head>
+<body>
+    <div class="lecture_area">
+        <div class="lecture_body">
+            <div class="video_area">
+                <video class="video" loop="" muted="" controls="false" data-autoplay="">
+                    <source src="image/sample2.mp4" type="video/mp4">
+                    <source src="http://www.w3schools.com/html/mov_bbb.ogg" type="video/ogg">
+                </video>
+            </div>
+            <div class="chat_area">
+                <main class="msger_chat">
+                    <p class="Resource">Q&A</p>
+                    <body></body>
+                    <button class="icon-button" onclick="myFunction()">
+                        <img src="image/alarm-bell-symbol.png" alt="아이콘 이미지">
+                    </button>
+                    <div class="msg left_msg">
+                        </div>
+                        <p class="question">Q1)________________________________________</p>
+                        <div class="msg_bubble">
+                            <div class="msg_info">
+                                
+                            </div>
+                            <div class="msg_text">
+                                <p class="answer">A1)________________________________________</p>
+                        </div>
+                        
+                        <div class="page-number">
+                            <span>1</span>
+                        </div>
+                </main>
+                
+                
+                <form class="msger_inputarea">
+                    
+                    <div class="msger_input_container">
+                        <div class="dropdown">
+                            <button class="dropbtn">선택</button>
+                            <div class="dropdown-content">
+                                <a href="#">공개</a>
+                                <a href="#">비공개</a>
+                            </div>
+                        </div>                    
+                    <input type="text" class="msger_input" placeholder="질문을 입력하세요">
+                    <button type="submit" class="msger_send_btn">업로드</button>
+                </form>
+            </div>
+        </div>
+        <div class="lecture_footer">
+            <div class="lecture_name">
+                <span class="txt">카카오클라우드스쿨 3기 개발자반</span>
+            </div>
+            <div class="ico_area">
+                <div class="ico_list bdr_raius">
+                    <a class="ico_btn" href="#">
+                        <img class="ico" src="image/icon.png"/>
+                    </a>
+                    <a class="ico_btn" href="#">
+                        <img class="ico" src="image/video.png"/>
+                    </a>
+                    <a class="ico_btn" href="#">
+                        <img class="ico" src="image/sub.png"/>
+                    </a>
+                    <a class="ico_btn" href="#">
+                        <img class="ico" src="image/imoji.png"/>
+                    </a>
+                    <a class="ico_btn" href="#">
+                        <img class="ico" src="image/screenshare.png"/>
+                    </a>
+                    <a class="ico_btn" href="#">
+                        <img class="ico" src="image/hands-up.png"/>
+                    </a>
+                    <a class="ico_btn" href="#">
+                        <img class="ico" src="image/3dot.png"/>
+                    </a>
+                    <a class="ico_btn" href="#">
+                        <img class="ico" src="image/call.png"/>
+                    </a>
+                </div>
+            </div>
+            <div class="etc_area">
+                <div class="etc_list bdr_raius">
+
+                    <a class="etc_btn" href="#">
+                        <img class="ico" src="image/upload.png"/>
+                    </a>
+                    <a class="etc_btn" href="#">
+                        <img class="ico" src="image/information.png"/>
+                    </a>
+                    <a class="etc_btn" href="#">
+                        <img class="ico" src="image/friends.png"/>
+                    </a>
+                    <a class="etc_btn" href="#">
+                        <img class="ico" src="image/chat.png"/>
+                    </a>
+                    <a class="etc_btn" href="#">
+                        <img class="ico" src="image/lock.png"/>
+                    </a>
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    /*
+    const fileTypeDropdown = document.getElementById("fileTypeDropdown");
+        const selectedFileType = document.getElementById("selectedFileType");
+        const searchBox = document.getElementById("searchBox");
+        const searchButton = document.getElementById("searchButton");
+
+        fileTypeDropdown.addEventListener("change", () => {
+            const selectedOption = fileTypeDropdown.value;
+            selectedFileType.textContent = `선택된 파일 타입: ${selectedOption}`;
+        });
+
+        searchButton.addEventListener("click", () => {
+            const selectedFileTypeText = selectedFileType.textContent;
+            const searchText = searchBox.value;
+            
+            alert(`선택된 파일 타입: ${selectedFileTypeText}\n검색어: ${searchText}`);
+            // 실제 검색 기능을 실행하려면 이 부분을 원하는 동작으로 수정하세요.
+        });*/
+</script>
+</html>

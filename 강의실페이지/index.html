@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TMEROOM</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box;}
+        a { text-decoration: none; color: #000;}
+        img { vertical-align: top;}
+        ol, ul, li { list-style: none;}
+
+        html, body { height: 100%;}
+        .lecture_area { display: flex; flex-direction: column; position: relative; width: 100%; height: 100%; background-color: #000;}
+        .lecture_area .ico { width: 100%; height: 100%; object-fit: cover;}
+        .lecture_body { display: flex; height: 100%; max-height: calc(100% - 100px);}
+        .lecture_body .video_area { width: 75%;}
+        .lecture_body .video_area .video { width: 100%; height: 100%;}
+        .lecture_body .chat_area { display: flex; flex-direction: column; width: 25%; height: 100%;}
+        .lecture_footer { height: 100px;}
+
+        .msger { display: flex; flex-flow: column wrap; justify-content: space-between; width: 100%; max-width: 867px; margin: 25px 10px; height: calc(100% - 50px); border-radius: 5px; box-shadow: 0 15px 15px -5px rgba(0, 0, 0, 0.2);}
+        .msger_chat { flex: 1; overflow-y: scroll; padding: 10px;}
+        .msg { display: flex; align-items: flex-end; margin-bottom: 10px;}
+        .msg_img { width: 50px; min-width: 50px; height: 50px; margin-right: 10px; background: #ddd; background-repeat: no-repeat; background-position: center; background-size: cover; border-radius: 50%;}
+        .msg_bubble { max-width: 450px; padding: 15px; border-radius: 15px; background: #ececec;}
+        .msg_info { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;}
+        .msg_info_name { margin-right: 10px; font-weight: 700;}
+        .msg_info_time { font-size: 0.85em;}
+        .left_msg .msg_bubble { border-bottom-left-radius: 0;}
+        .right_msg { flex-direction: row-reverse;}
+        .right_msg .msg_bubble { background: #579ffb; color: #fff; border-bottom-right-radius: 0;}
+        .right_msg .msg_img { margin: 0 0 0 10px;}
+        .msger_inputarea { display: flex; padding: 10px; background: #eee;}
+        .msger_inputarea * { padding: 10px; border: none; border-radius: 3px; font-size: 1em;}
+        .msger_input { flex: 1; background: #ddd;}
+        .msger_send_btn { margin-left: 10px; background: rgb(0, 196, 65); color: #fff; font-weight: bold; cursor: pointer; transition: background 0.23s;}
+        .msger_send_btn:hover { background: rgb(0, 180, 50);}
+        .msger_chat { background-color: #fcfcfe;}
+
+        .lecture_footer { display: flex; align-items: center; position: absolute; left: 0; bottom: 0; width: 100%; padding: 0 20px; background-color: #666666;}
+        .lecture_footer .lecture_name .txt { font-size: 24px; color: #fff;}
+        .lecture_footer .ico_area { display: flex; flex: 1; justify-content: center; position: relative;}
+        .lecture_footer .emoji_area { position: absolute; bottom: calc(100% + 10px); padding: 5px;}
+        .lecture_footer .emoji_list { display: flex; gap: 5px;}
+        .lecture_footer .emoji_btn { display: block; width: 20px; height: 20px;}
+        .lecture_footer .ico_list { display: flex; gap: 10px; padding: 10px;}
+        .lecture_footer .ico_btn { display: block; width: 50px; height: 50px;}
+        .lecture_footer .etc_list { display: flex; gap: 10px; padding: 10px;}
+        .lecture_footer .etc_btn { display: block; width: 35px; height: 35px; }
+        .lecture_footer .bdr_raius { padding: 10px 20px; border-radius: 100px; background-color: rgba(0,0,0,.3);}
+    </style>
+</head>
+<body>
+    <div class="lecture_area">
+        <div class="lecture_body">
+            <div class="video_area">
+                <video class="video" loop="" muted="" controls="false" data-autoplay="">
+                    <source src="image/sample2.mp4" type="video/mp4">
+                    <source src="http://www.w3schools.com/html/mov_bbb.ogg" type="video/ogg">
+                </video>
+            </div>
+            <div class="chat_area">
+                <main class="msger_chat">
+                    <div class="msg left_msg">
+                        <div class="msg_img" style="background-image: url(image/CHODAN.webp)">
+                        </div>
+                        <div class="msg_bubble">
+                            <div class="msg_info">
+                                <div class="msg_info_name">테스트</div>
+                                <div class="msg_info_time">12:45</div>
+                            </div>
+                            <div class="msg_text">
+                               교육 시작했습니다 모두 접속해주세요
+                            </div>
+                        </div>
+                    </div>
+                    <div class="msg right_msg">
+                        <div class="msg_img" style="background-image: url(https://image.flaticon.com/icons/svg/145/145867.svg)">
+                        </div>
+                        <div class="msg_bubble">
+                            <div class="msg_info">
+                                <div class="msg_info_name">학생2</div>
+                                <div class="msg_info_time">12:46</div>
+                            </div>
+                            <div class="msg_text">
+                                강사님 12시 50분에 시작해주시면 안될까요?
+                            </div>
+                        </div>
+                    </div>
+                    <div class="msg right_msg">
+                        <div class="msg_img" style="background-image: url(https://image.flaticon.com/icons/svg/145/145867.svg)">
+                        </div>
+                        <div class="msg_bubble">
+                            <div class="msg_info">
+                                <div class="msg_info_name">학생3</div>
+                                <div class="msg_info_time">12:46</div>
+                            </div>
+                            <div class="msg_text">
+                                화장실 한번만 다녀오겠습니다!
+                            </div>
+                        </div>
+                    </div>
+                    <div class="msg right_msg">
+                        <div class="msg_img" style="background-image: url(https://image.flaticon.com/icons/svg/145/145867.svg)">
+                        </div>
+                        <div class="msg_bubble">
+                            <div class="msg_info">
+                                <div class="msg_info_name">나</div>
+                                <div class="msg_info_time">12:46</div>
+                            </div>
+                            <div class="msg_text">
+                                강사님 질문 있습니다.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="msg right_msg">
+                        <div class="msg_img" style="background-image: url(https://image.flaticon.com/icons/svg/145/145867.svg)">
+                        </div>
+                        <div class="msg_bubble">
+                            <div class="msg_info">
+                                <div class="msg_info_name">나</div>
+                                <div class="msg_info_time">12:46</div>
+                            </div>
+                            <div class="msg_text">
+                                테스트채팅987 테스트채팅987 테스트채팅987 테스트채팅987 테스트채팅987 테스트채팅987
+                            </div>
+                        </div>
+                    </div>
+                    <div class="msg right_msg">
+                        <div class="msg_img" style="background-image: url(https://image.flaticon.com/icons/svg/145/145867.svg)">
+                        </div>
+                        <div class="msg_bubble">
+                            <div class="msg_info">
+                                <div class="msg_info_name">나</div>
+                                <div class="msg_info_time">12:46</div>
+                            </div>
+                            <div class="msg_text">
+                                테스트채팅987 테스트채팅987 테스트채팅987 테스트채팅987 테스트채팅987 테스트채팅987
+                            </div>
+                        </div>
+                    </div>
+                    <div class="msg right_msg">
+                        <div class="msg_img" style="background-image: url(https://image.flaticon.com/icons/svg/145/145867.svg)">
+                        </div>
+                        <div class="msg_bubble">
+                            <div class="msg_info">
+                                <div class="msg_info_name">나</div>
+                                <div class="msg_info_time">12:46</div>
+                            </div>
+                            <div class="msg_text">
+                                테스트채팅987 테스트채팅987 테스트채팅987 테스트채팅987 테스트채팅987 테스트채팅987
+                            </div>
+                        </div>
+                    </div>
+                    <div class="msg right_msg">
+                        <div class="msg_img" style="background-image: url(https://image.flaticon.com/icons/svg/145/145867.svg)">
+                        </div>
+                        <div class="msg_bubble">
+                            <div class="msg_info">
+                                <div class="msg_info_name">나</div>
+                                <div class="msg_info_time">12:46</div>
+                            </div>
+                            <div class="msg_text">
+                                테스트채팅987 테스트채팅987 테스트채팅987 테스트채팅987 테스트채팅987 테스트채팅987
+                            </div>
+                        </div>
+                    </div>
+                    <div class="msg right_msg">
+                        <div class="msg_img" style="background-image: url(https://image.flaticon.com/icons/svg/145/145867.svg)">
+                        </div>
+                        <div class="msg_bubble">
+                            <div class="msg_info">
+                                <div class="msg_info_name">나</div>
+                                <div class="msg_info_time">12:46</div>
+                            </div>
+                            <div class="msg_text">
+                                테스트채팅987 테스트채팅987 테스트채팅987 테스트채팅987 테스트채팅987 테스트채팅987
+                            </div>
+                        </div>
+                    </div>
+                </main>
+                <form class="msger_inputarea">
+                    <input type="text" class="msger_input" placeholder="채팅내용...">
+                    <button type="submit" class="msger_send_btn">보내기</button>
+                </form>
+            </div>
+        </div>
+        <div class="lecture_footer">
+            <div class="lecture_name">
+                <span class="txt">카카오클라우드스쿨 3기 개발자반</span>
+            </div>
+            <div class="ico_area">
+                <div class="ico_list bdr_raius">
+                    <a class="ico_btn" href="#">
+                        <img class="ico" src="image/icon.png"/>
+                    </a>
+                    <a class="ico_btn" href="#">
+                        <img class="ico" src="image/video.png"/>
+                    </a>
+                    <a class="ico_btn" href="#">
+                        <img class="ico" src="image/sub.png"/>
+                    </a>
+                    <a class="ico_btn" href="#">
+                        <img class="ico" src="image/imoji.png"/>
+                    </a>
+                    <a class="ico_btn" href="#">
+                        <img class="ico" src="image/screenshare.png"/>
+                    </a>
+                    <a class="ico_btn" href="#">
+                        <img class="ico" src="image/hands-up.png"/>
+                    </a>
+                    <a class="ico_btn" href="#">
+                        <img class="ico" src="image/3dot.png"/>
+                    </a>
+                    <a class="ico_btn" href="#">
+                        <img class="ico" src="image/call.png"/>
+                    </a>
+                </div>
+            </div>
+            <div class="etc_area">
+                <div class="etc_list bdr_raius">
+
+                    <a class="etc_btn" href="#">
+                        <img class="ico" src="image/upload.png"/>
+                    </a>
+                    <a class="etc_btn" href="#">
+                        <img class="ico" src="image/information.png"/>
+                    </a>
+                    <a class="etc_btn" href="#">
+                        <img class="ico" src="image/friends.png"/>
+                    </a>
+                    <a class="etc_btn" href="#">
+                        <img class="ico" src="image/chat.png"/>
+                    </a>
+                    <a class="etc_btn" href="#">
+                        <img class="ico" src="image/lock.png"/>
+                    </a>
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

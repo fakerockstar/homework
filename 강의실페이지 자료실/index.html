@@ -1,0 +1,232 @@
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:400&display=swap">
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TMEROOM</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box;}
+        a { text-decoration: none; color: #000;}
+        img { vertical-align: top;}
+        ol, ul, li { list-style: none;}
+
+        html, body { height: 100%;}
+        .lecture_area { display: flex; flex-direction: column; position: relative; width: 100%; height: 100%; background-color: #000;}
+        .lecture_area .ico { width: 100%; height: 100%; object-fit: cover;}
+        .lecture_body { display: flex; height: 100%; max-height: calc(100% - 100px);}
+        .lecture_body .video_area { width: 75%;}
+        .lecture_body .video_area .video { width: 100%; height: 100%;}
+        .lecture_body .chat_area { display: flex; flex-direction: column; width: 25%; height: 100%;}
+        .lecture_footer { height: 100px;}
+
+        .msger { display: flex; flex-flow: column wrap; justify-content: space-between; width: 100%; max-width: 867px; margin: 25px 10px; height: calc(100% - 50px); border-radius: 5px; box-shadow: 0 15px 15px -5px rgba(0, 0, 0, 0.2);}
+        .msger_chat { flex: 1; overflow-y: scroll; padding: 10px;}
+        .msg { display: flex; align-items: flex-end; margin-bottom: 10px;}
+        .msg_img { width: 50px; min-width: 50px; height: 50px; margin-right: 10px; background: #ddd; background-repeat: no-repeat; background-position: center; background-size: cover; border-radius: 50%;}
+        .msg_bubble { max-width: 450px; padding: 15px; border-radius: 15px; background: #ececec;}
+        .msg_info { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;}
+        .msg_info_name { margin-right: 10px; font-weight: 700;}
+        .msg_info_time { font-size: 0.85em;}
+        .left_msg .msg_bubble { border-bottom-left-radius: 0;}
+        .right_msg { flex-direction: row-reverse;}
+        .right_msg .msg_bubble { background: #579ffb; color: #fff; border-bottom-right-radius: 0;}
+        .right_msg .msg_img { margin: 0 0 0 10px;}
+        .msger_inputarea { display: flex; padding: 10px; background: #eee;}
+        .msger_inputarea * { padding: 10px; border: none; border-radius: 3px; font-size: 1em;}
+        .msger_input { flex: 1; background: #ddd;}
+        .msger_send_btn { margin-left: 10px; background: rgb(0, 196, 65); color: #fff; font-weight: bold; cursor: pointer; transition: background 0.23s;}
+        .msger_send_btn:hover { background: rgb(0, 180, 50);}
+        .msger_chat { background-color: #fcfcfe;}
+
+        .lecture_footer { display: flex; align-items: center; position: absolute; left: 0; bottom: 0; width: 100%; padding: 0 20px; background-color: #666666;}
+        .lecture_footer .lecture_name .txt { font-size: 24px; color: #fff;}
+        .lecture_footer .ico_area { display: flex; flex: 1; justify-content: center; position: relative;}
+        .lecture_footer .emoji_area { position: absolute; bottom: calc(100% + 10px); padding: 5px;}
+        .lecture_footer .emoji_list { display: flex; gap: 5px;}
+        .lecture_footer .emoji_btn { display: block; width: 20px; height: 20px;}
+        .lecture_footer .ico_list { display: flex; gap: 10px; padding: 10px;}
+        .lecture_footer .ico_btn { display: block; width: 50px; height: 50px;}
+        .lecture_footer .etc_list { display: flex; gap: 10px; padding: 10px;}
+        .lecture_footer .etc_btn { display: block; width: 35px; height: 35px; }
+        .lecture_footer .bdr_raius { padding: 10px 20px; border-radius: 100px; background-color: rgba(0,0,0,.3);}
+        .Resource {
+    font-size: 50px;
+    text-align: center;
+    font-family: 'Noto Sans', sans-serif;
+    font-weight: bold;
+}
+
+.file-type-label{
+    font-size: 20px;
+    text-align: center;
+}
+
+.search-container{
+    font-size:20px;
+    text-align: center;
+}
+
+.search-input{
+    font-size:17px;
+    text-align: center;
+}
+
+.search-button{
+    font-size: 17px;
+    text-align: center;
+}
+
+.file-type-dropdown{
+    font-size:17px;
+    text-align: center;
+}
+
+.msg_text{
+    height:400px;
+}
+.file-info{
+    font-size:20px;
+    text-align: left;
+}
+.download-button{
+    width:30px;
+    height:30px;
+   margin-left:250px;
+   margin-top:-30px;
+   cursor: pointer;
+}
+
+.delete-button{
+    width:30px;
+    height:30px;
+    margin-top:-30px;
+    cursor: pointer;
+}
+    </style>
+</head>
+<body>
+    <div class="lecture_area">
+        <div class="lecture_body">
+            <div class="video_area">
+                <video class="video" loop="" muted="" controls="false" data-autoplay="">
+                    <source src="image/sample2.mp4" type="video/mp4">
+                    <source src="http://www.w3schools.com/html/mov_bbb.ogg" type="video/ogg">
+                </video>
+            </div>
+            <div class="chat_area">
+                <main class="msger_chat">
+                    <p class="Resource">자료실</p>
+                    <body>
+                        <div class="search-container">
+                            <select id="fileTypeDropdown" class="file-type-dropdown">
+                                <option value="선택안함">선택 안 함</option>
+                                <option value="문서">문서</option>
+                                <option value="사진">사진</option>
+                                <option value="영상">영상</option>
+                                <option value="기타">기타</option>
+                                
+                            </select>
+                            
+                            <input type="text" id="searchBox" class="search-input" placeholder="검색어를 입력하세요">
+                            <button id="searchButton" class="search-button">검색</button>
+                        </div>
+
+                    <div class="msg left_msg">
+                        </div>
+                        <div class="msg_bubble">
+                            <div class="msg_info">
+                                
+                            </div>
+                            <div class="msg_text">
+                                <div>
+                                    <p class="file-info">파일명 업로더 업로드 날짜</p>
+                                    <img src="image/download.png" alt="Download" class="download-button" onclick="downloadFile()">
+                                    <img src="image/delete.png" alt="Delete" class="delete-button" onclick="deleteFile()">
+                                </div>
+                            </div>
+                        </div>
+
+                </main>
+                <form class="msger_inputarea">
+                    <input type="file" class="msger_input" placeholder="파일 업로드">
+                    <button type="submit" class="msger_send_btn">업로드</button>
+                </form>
+            </div>
+        </div>
+        <div class="lecture_footer">
+            <div class="lecture_name">
+                <span class="txt">카카오클라우드스쿨 3기 개발자반</span>
+            </div>
+            <div class="ico_area">
+                <div class="ico_list bdr_raius">
+                    <a class="ico_btn" href="#">
+                        <img class="ico" src="image/icon.png"/>
+                    </a>
+                    <a class="ico_btn" href="#">
+                        <img class="ico" src="image/video.png"/>
+                    </a>
+                    <a class="ico_btn" href="#">
+                        <img class="ico" src="image/sub.png"/>
+                    </a>
+                    <a class="ico_btn" href="#">
+                        <img class="ico" src="image/imoji.png"/>
+                    </a>
+                    <a class="ico_btn" href="#">
+                        <img class="ico" src="image/screenshare.png"/>
+                    </a>
+                    <a class="ico_btn" href="#">
+                        <img class="ico" src="image/hands-up.png"/>
+                    </a>
+                    <a class="ico_btn" href="#">
+                        <img class="ico" src="image/3dot.png"/>
+                    </a>
+                    <a class="ico_btn" href="#">
+                        <img class="ico" src="image/call.png"/>
+                    </a>
+                </div>
+            </div>
+            <div class="etc_area">
+                <div class="etc_list bdr_raius">
+
+                    <a class="etc_btn" href="#">
+                        <img class="ico" src="image/upload.png"/>
+                    </a>
+                    <a class="etc_btn" href="#">
+                        <img class="ico" src="image/information.png"/>
+                    </a>
+                    <a class="etc_btn" href="#">
+                        <img class="ico" src="image/friends.png"/>
+                    </a>
+                    <a class="etc_btn" href="#">
+                        <img class="ico" src="image/chat.png"/>
+                    </a>
+                    <a class="etc_btn" href="#">
+                        <img class="ico" src="image/lock.png"/>
+                    </a>
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    const fileTypeDropdown = document.getElementById("fileTypeDropdown");
+        const selectedFileType = document.getElementById("selectedFileType");
+        const searchBox = document.getElementById("searchBox");
+        const searchButton = document.getElementById("searchButton");
+
+        fileTypeDropdown.addEventListener("change", () => {
+            const selectedOption = fileTypeDropdown.value;
+            selectedFileType.textContent = `선택된 파일 타입: ${selectedOption}`;
+        });
+
+        searchButton.addEventListener("click", () => {
+            const selectedFileTypeText = selectedFileType.textContent;
+            const searchText = searchBox.value;
+            
+            alert(`선택된 파일 타입: ${selectedFileTypeText}\n검색어: ${searchText}`);
+            // 실제 검색 기능을 실행하려면 이 부분을 원하는 동작으로 수정하세요.
+        });
+</script>
+</html>
